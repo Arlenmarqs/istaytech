@@ -13,14 +13,16 @@
 
     <header>
         <div class="topbar">
-            <div class="logo">Istay<span>Tech</span></div>
+            <div class="logo">
+                <h1><span>Stay</span>Tech</h1>
+            </div>
+
             <div class="icons">
-                <i class="fa fa-search"></i>
-                <i class="fa fa-user"></i>
+                <input type="text" id="busca" placeholder="Buscar produto">
+                <i class="fa fa-search" id="iconeBusca"></i>
                 <i class="fa fa-shopping-cart"></i>
             </div>
         </div>
-
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -45,7 +47,7 @@
             <a href="#" class="btn"><i class="fa fa-shopping-cart"></i> Pegar Oferta</a>
         </div>
         <div class="hero-img">
-            <img src="img/applewatch.png" alt="Smartwatch">
+            <img src="img/applewatchnew.png" alt="Smartwatch">
         </div>
     </section>
 
@@ -71,10 +73,10 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="produtos">
             <h2>Lançamentos</h2>
-            <div class="grid-produtos">
+            <div class="grid-produtos" id="produtos-lancamentos">
                 <div class="card">
                     <img src="img/logo.png" alt="">
                     <h3>Mini Air Dots Sem Fio</h3>
@@ -117,7 +119,7 @@
 
         <section class="produtos">
             <h2>Produtos em Oferta</h2>
-            <div class="grid-produtos">
+            <div class="grid-produtos" id="produtos-oferta">
                 <div class="card">
                     <img src="img/logo.png" alt="">
                     <h3>Mini Air Dots</h3>
@@ -148,7 +150,9 @@
     </main>
     <footer>
         <p>&copy; 2024 StayTech. Todos os direitos reservados.</p>
+    </footer>
 
+    <script src="js/script.js"></script>
 </body>
 
 </html>
