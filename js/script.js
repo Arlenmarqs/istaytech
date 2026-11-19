@@ -64,10 +64,12 @@ function filtrarProdutos(produtos, termo, categoria) {
     });
 }
 
-(async function() {
+(async function () {
 
     try {
         const produtos = await carregarProdutosCSV('dados/produtos.csv');
+        console.log("Produtos carregados:", produtos);
+        console.log("Quantidade de produtos:", produtos.length);
 
         const lancamentos = produtos.filter(p => p.tipo === 'lancamento');
         const ofertas = produtos.filter(p => p.tipo === 'oferta');
@@ -87,6 +89,8 @@ function filtrarProdutos(produtos, termo, categoria) {
         let categoriaSelecionada = null;
 
         function atualizarBusca() {
+            console.log("Busca acionada!");
+            console.log("Texto digitado:", inputBusca.value);
             const termo = inputBusca.value.trim();
 
             const resultados = filtrarProdutos(
@@ -105,7 +109,7 @@ function filtrarProdutos(produtos, termo, categoria) {
                 }
             });
 
-            renderizarProdutos(resultados, 'resultados-busca');
+            renderizarProdutos(resultados, 'produtos-busca');
 
             mensagemBusca.textContent = resultados.length === 0
                 ? "Nenhum produto encontrado."
@@ -115,7 +119,7 @@ function filtrarProdutos(produtos, termo, categoria) {
         inputBusca.addEventListener('input', atualizarBusca);
 
         iconeBusca.addEventListener('click', atualizarBusca);
-
+        console.log("Eventos da busca registrados!");
         const categorias = document.querySelectorAll('.cat-item');
 
         categorias.forEach(item => {
@@ -132,3 +136,6 @@ function filtrarProdutos(produtos, termo, categoria) {
     }
 
 })();
+console.log("StayTech: JavaScript carregado!");
+console.log("Campo de busca:", document.getElementById("busca"));
+console.log("Ícone de busca:", document.getElementById("iconeBusca"));

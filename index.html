@@ -54,24 +54,36 @@
     <main>
         <section class="categorias">
             <h2>Categorias</h2>
+
             <div class="grid-categorias">
-                <div class="cat-item">
+
+                <div class="cat-item" data-categoria="fone">
                     <i class="fa-solid fa-headphones"></i>
                     <p>Fone de Ouvido</p>
                 </div>
-                <div class="cat-item">
+
+                <div class="cat-item" data-categoria="airpods">
                     <i class="fa-solid fa-mobile-screen-button"></i>
                     <p>Airpods</p>
                 </div>
-                <div class="cat-item">
+
+                <div class="cat-item" data-categoria="smartwatch">
                     <i class="fa-solid fa-clock"></i>
                     <p>Smart Watch</p>
                 </div>
-                <div class="cat-item">
+
+                <div class="cat-item" data-categoria="applewatch">
                     <i class="fa-brands fa-apple"></i>
                     <p>Apple Watch</p>
                 </div>
+
             </div>
+        </section>
+
+        <section class="produtos" id="secao-busca" hidden>
+            <h2>Resultados da Busca</h2>
+            <div class="grid-produtos" id="produtos-busca"></div>
+            <p id="mensagem-busca"></p>
         </section>
 
         <section class="produtos">
