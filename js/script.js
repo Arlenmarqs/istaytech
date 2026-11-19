@@ -97,7 +97,33 @@ function filtrarProdutos(produtos, termo, categoria) {
 
             console.log('Carrinho atualizado:', carrinho);
         }
+        const listaCarrinho = document.getElementById('listaCarrinho');
 
+        listaCarrinho.addEventListener('click', function (event) {
+            const botao = event.target.closest('.btn-remover');
+
+            if (!botao) return;
+
+            removerDoCarrinho(botao.dataset.id);
+        });
+        const iconeCarrinho = document.getElementById('iconeCarrinho');
+        const modalCarrinho = document.getElementById('modalCarrinho');
+        const fecharCarrinho = document.getElementById('fecharCarrinho');
+
+        iconeCarrinho.addEventListener('click', () => {
+            renderizarCarrinho();
+            modalCarrinho.style.display = 'flex';
+        });
+
+        fecharCarrinho.addEventListener('click', () => {
+            modalCarrinho.style.display = 'none';
+        });
+
+        modalCarrinho.addEventListener('click', (event) => {
+            if (event.target === modalCarrinho) {
+                modalCarrinho.style.display = 'none';
+            }
+        });
         const lancamentos = produtos.filter(p => p.tipo === 'lancamento');
         const ofertas = produtos.filter(p => p.tipo === 'oferta');
 
@@ -190,4 +216,66 @@ function atualizarContadorCarrinho() {
 }
 
 atualizarContadorCarrinho();
+function renderizarCarrinho() {
+    const listaCarrinho = document.getElementById('listaCarrinho');
+    const totalCarrinho = document.getElementById('totalCarrinho');
+
+    listaCarrinho.innerHTML = '';
+
+    if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = '<p>Seu carrinho está vazio.</p>';
+        totalCarrinho.textContent = 'R$ 0,00';
+        return;
+    }
+
+    let total = 0;
+
+    carrinho.forEach(produto => {
+        const subtotal = produto.preco * produto.quantidade;
+
+        total += subtotal;
+
+        const item = document.createElement('div');
+
+        item.classList.add('item-carrinho');
+
+        item.innerHTML = `
+            <div>
+                <h3>${produto.nome}</h3>
+
+                <p>Quantidade: ${produto.quantidade}</p>
+
+                <p>Preço: ${produto.preco.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        })}</p>
+
+                <p>Subtotal: ${subtotal.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        })}</p>
+
+                <button class="btn-remover" data-id="${produto.id}">
+                    Remover produto
+                </button>
+            </div>
+        `;
+
+        listaCarrinho.appendChild(item);
+    });
+
+    totalCarrinho.textContent = total.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+}
+function removerDoCarrinho(id) {
+    carrinho = carrinho.filter(
+        produto => produto.id !== String(id)
+    );
+
+    salvarCarrinho();
+    atualizarContadorCarrinho();
+    renderizarCarrinho();
+}
 ;
