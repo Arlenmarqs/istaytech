@@ -1,10 +1,10 @@
-nome,preco,imagem,link,tipo,categoria
-Mini Air Dots Sem Fio,150,img/logo.png,#,lancamento,airpods
-Xiaomi Redmi Airdots,199,img/logo.png,#,lancamento,airpods
-Series 5 LTE,1349,img/logo.png,#,lancamento,applewatch
-Fone Bluetooth XYZ,250,img/logo.png,#,lancamento,fone
-Smartwatch Pro 3,899,img/logo.png,#,lancamento,smartwatch
-COLMI,210,img/logo.png,#,oferta,smartwatch
-Mini Air Dots,150,img/logo.png,#,oferta,airpods
-Xiaomi Redmi Airdots,199,img/logo.png,#,oferta,airpods
-Fone XYZ Promo,180,img/logo.png,#,oferta,fone
+id,nome,preco,imagem,link,tipo,categoria
+1,Mini Air Dots Sem Fio,150,img/logo.png,#,lancamento,airpods
+2,Xiaomi Redmi Airdots,199,img/logo.png,#,lancamento,airpods
+3,Series 5 LTE,1349,img/logo.png,#,lancamento,applewatch
+4,Fone Bluetooth XYZ,250,img/logo.png,#,fone
+5,Smartwatch Pro 3,899,img/logo.png,#,smartwatch
+6,COLMI,210,img/logo.png,#,oferta,smartwatch
+7,Mini Air Dots,150,img/logo.png,#,oferta,airpods
+8,Xiaomi Redmi Airdots,199,img/logo.png,#,oferta,airpods
+9,Fone XYZ Promo,180,img/logo.png,#,oferta,fone

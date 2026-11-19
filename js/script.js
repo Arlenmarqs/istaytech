@@ -44,6 +44,9 @@ function renderizarProdutos(produtos, containerId) {
             <a href="${produto.link}" class="btn" target="_blank" rel="noopener noreferrer">
                 Ver opções
             </a>
+            <button class="btn btn-carrinho" data-id="${produto.id}">
+    Adicionar ao carrinho
+</button>
         `;
 
         container.appendChild(card);
@@ -68,8 +71,32 @@ function filtrarProdutos(produtos, termo, categoria) {
 
     try {
         const produtos = await carregarProdutosCSV('dados/produtos.csv');
-        console.log("Produtos carregados:", produtos);
-        console.log("Quantidade de produtos:", produtos.length);
+        function adicionarAoCarrinho(id) {
+            const produto = produtos.find(p => String(p.id) === String(id));
+
+            if (!produto) return;
+
+            const itemExistente = carrinho.find(
+                item => item.id === String(id)
+            );
+
+            if (itemExistente) {
+                itemExistente.quantidade++;
+            } else {
+                carrinho.push({
+                    id: String(produto.id),
+                    nome: produto.nome,
+                    preco: produto.preco,
+                    imagem: produto.imagem,
+                    quantidade: 1
+                });
+            }
+
+            salvarCarrinho();
+            atualizarContadorCarrinho();
+
+            console.log('Carrinho atualizado:', carrinho);
+        }
 
         const lancamentos = produtos.filter(p => p.tipo === 'lancamento');
         const ofertas = produtos.filter(p => p.tipo === 'oferta');
@@ -130,12 +157,37 @@ function filtrarProdutos(produtos, termo, categoria) {
                 atualizarBusca();
             });
         });
+        document.addEventListener('click', function (event) {
+            const botao = event.target.closest('.btn-carrinho');
 
+            if (!botao) return;
+
+            adicionarAoCarrinho(botao.dataset.id);
+        });
     } catch (erro) {
         console.error("Erro ao carregar produtos:", erro);
     }
 
-})();
-console.log("StayTech: JavaScript carregado!");
-console.log("Campo de busca:", document.getElementById("busca"));
-console.log("Ícone de busca:", document.getElementById("iconeBusca"));
+})()
+
+// Recupera o carrinho salvo
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+// Salva o carrinho no navegador
+function salvarCarrinho() {
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+}
+
+// Atualiza o contador do carrinho
+function atualizarContadorCarrinho() {
+    const contador = document.getElementById('contadorCarrinho');
+
+    const quantidade = carrinho.reduce((total, produto) => {
+        return total + produto.quantidade;
+    }, 0);
+
+    contador.textContent = quantidade;
+}
+
+atualizarContadorCarrinho();
+;
